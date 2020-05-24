@@ -33,9 +33,13 @@ class Standard: ObservableObject, Identifiable {
     func createNewStudent() {
         let newStudent = Student(students.count + 1, marks: "0.0")
         admitStudent(newStudent)
+
+        // firing custom publisher when a new student gets added
         studentCountUpdatedPublisher.send(())
     }
-    
+
+    // Subscribing to default publishers for any array elements
+
     private func admitStudent(_ newStudent: Student) {
         students.append(newStudent)
         newStudent
@@ -71,7 +75,9 @@ class VSSchool: ObservableObject, Identifiable {
         subscribeToStudentsCount(for: newStandard)
         classes.append(newStandard)
     }
-    
+
+    // Subscribing to custom publishers / user defined publishers for array elements
+
     private func subscribeToStudentsCount(for newStandard: Standard) {
         newStandard
             .studentCountUpdatedPublisher
