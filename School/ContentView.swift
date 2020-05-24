@@ -218,7 +218,7 @@ struct ContentView: View {
             SchoolView(school: school)
         }
         .background(Color.purple)
-//                .edgesIgnoringSafeArea(.all))
+        .edgesIgnoringSafeArea(.all)
         .accentColor(.orange)
     }
 }
