@@ -9,17 +9,11 @@
 import Combine
 import SwiftUI
 
-extension View {
-    func endEditing() {
-        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-    }
-}
-
 class Student: ObservableObject, Identifiable {
     let id = UUID()
     @Published var name: String = ""
     @Published var marks: String = "90.0"
-
+    
     init(_ number: Int, marks: String) {
         self.name = "Student \(number)"
         self.marks = marks
@@ -32,7 +26,7 @@ class Standard: ObservableObject, Identifiable {
     @Published var students: [Student] = []
     @Published var averageMarks: String = ""
     
-    private var cancellables = [AnyCancellable]()
+    private var cancellables = Set<AnyCancellable>()
     
     var studentCountUpdatedPublisher = PassthroughSubject<Void, Never>()
     
@@ -41,23 +35,23 @@ class Standard: ObservableObject, Identifiable {
         admitStudent(newStudent)
         studentCountUpdatedPublisher.send(())
     }
-
+    
     private func admitStudent(_ newStudent: Student) {
         students.append(newStudent)
-        let newStudentSubscription = newStudent
+        newStudent
             .objectWillChange
             .debounce(for: 0.1, scheduler: DispatchQueue.main, options: nil)
-            .sink(receiveCompletion: { _ in
+            .sink { _ in
                 self.updateAverage()
-            }, receiveValue: { _ in })
-        cancellables.append(newStudentSubscription)
+        }
+        .store(in: &cancellables)
     }
-
+    
     private func updateAverage() {
         let sum = students.reduce(0.0) { $0 + (Double($1.marks) ?? 0.0) }
         self.averageMarks = String(format: "%.2f", (sum / Double(students.count)))
     }
-
+    
     init(_ number: Int) {
         self.name = "Class \(number)"
     }
@@ -65,13 +59,13 @@ class Standard: ObservableObject, Identifiable {
 
 class VSSchool: ObservableObject, Identifiable {
     let id = UUID()
-
+    
     var name: String = "SCHOOL"
     @Published var classes: [Standard] = []
     @Published var totalStudents: Int = 0
-
-    private var cancellables = [AnyCancellable]()
-
+    
+    private var cancellables = Set<AnyCancellable>()
+    
     func createNewStandard() {
         let newStandard = Standard(classes.count + 1)
         subscribeToStudentsCount(for: newStandard)
@@ -79,13 +73,13 @@ class VSSchool: ObservableObject, Identifiable {
     }
     
     private func subscribeToStudentsCount(for newStandard: Standard) {
-        let cancellable = newStandard
+        newStandard
             .studentCountUpdatedPublisher
             .print("Student count updater in school: \(newStandard.name)")
-            .sink(receiveValue: { _ in
+            .sink { _ in
                 self.totalStudents += 1
-            })
-        self.cancellables.append(cancellable)
+        }
+        .store(in: &cancellables)
     }
 }
 
@@ -94,36 +88,33 @@ struct SchoolView: View {
     @ObservedObject var school: VSSchool
     
     var body: some View {
+        VStack {
+            Text(self.school.name)
+                .fontWeight(Font.Weight.heavy)
+                .font(.largeTitle)
+                .rotation3DEffect(Angle.degrees(-Double(45)), axis: (x: 1, y:0, z: 0))
+                .shadow(color: Color.black, radius: 6, x: 0, y: 10)
+                .padding()
+            
+            Text("Total Students: \(self.school.totalStudents)")
+                .font(.headline)
+                .padding([.bottom])
+            EditSchoolView(school: self.school)
+                .padding([.bottom])
             VStack {
-                Text(self.school.name)
-                    .fontWeight(Font.Weight.heavy)
-                    .font(.largeTitle)
-                    .rotation3DEffect(Angle.degrees(-Double(45)), axis: (x: 1, y:0, z: 0))
-                    .shadow(color: Color.black, radius: 6, x: 0, y: 10)
-                    .padding()
-                
-                Text("Total Students: \(self.school.totalStudents)")
-                    .font(.headline)
-                    .padding([.bottom])
-                //            Text("Total students: \(school.totalStudents)")
-                //                .font(.footnote)
-                //                .padding([.bottom])
-                EditSchoolView(school: self.school)
-                    .padding([.bottom])
-                VStack {
-                    ForEach(self.school.classes, content: StandardView.init)
-                }
+                ForEach(self.school.classes, content: StandardView.init)
             }
+        }
     }
 }
 
 struct EditSchoolView: View {
-
+    
     @ObservedObject var school: VSSchool
-
+    
     var body: some View {
         Button("Add new class", action: school.createNewStandard)
-        .layoutPriority(1)
+            .layoutPriority(1)
     }
 }
 
@@ -146,10 +137,10 @@ struct StandardView: View {
                     .padding()
                 Spacer()
             }
-
+            
             EditClassView(standard: standard)
                 .padding([.bottom])
-
+            
             VStack {
                 ForEach(standard.students, content: StudentView.init)
             }
@@ -158,9 +149,9 @@ struct StandardView: View {
 }
 
 struct EditClassView: View {
-
+    
     @ObservedObject var standard: Standard
-
+    
     var body: some View {
         Button("Add new student", action: standard.createNewStudent)
             .layoutPriority(1)
@@ -168,9 +159,9 @@ struct EditClassView: View {
 }
 
 struct StudentView: View {
-
+    
     @ObservedObject var student: Student
-
+    
     var body: some View {
         VStack {
             Text("\(student.name) (\(student.marks))")
@@ -182,9 +173,9 @@ struct StudentView: View {
 }
 
 struct EditStudentView: View {
-
+    
     @ObservedObject var student: Student
-
+    
     var body: some View {
         HStack {
             Spacer()
@@ -207,13 +198,10 @@ struct ContentView: View {
     var body: some View {
         ScrollView {
             SchoolView(school: school)
-                .onTapGesture {
-                    self.endEditing() }
-                .background(
-                    Color.purple
-                        .edgesIgnoringSafeArea(.all))
-                .accentColor(.orange)
         }
+        .background(Color.purple)
+//                .edgesIgnoringSafeArea(.all))
+        .accentColor(.orange)
     }
 }
 
@@ -221,11 +209,11 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-            Group {
+        Group {
             ContentView().colorScheme(.dark)
-                .previewDevice(PreviewDevice.init(rawValue: "iPhone SE"))
-            ContentView().colorScheme(.light)
-                .previewDevice(PreviewDevice.init(rawValue: "iPhone 6S"))
+                .previewDevice(PreviewDevice.init(rawValue: "Mac"))
+//            ContentView().colorScheme(.light)
+//                .previewDevice(PreviewDevice.init(rawValue: "mac"))
         }
     }
 }
