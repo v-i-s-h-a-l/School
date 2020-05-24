@@ -11,6 +11,9 @@ import SwiftUI
 
 class Student: ObservableObject, Identifiable {
     let id = UUID()
+
+    // these fire `objectWillChange` which is a part of ObservableObject protocol
+    // in our case both the student view and standard class observe/receive/subscribe to these changes
     @Published var name: String = ""
     @Published var marks: String = "90.0"
     
@@ -23,11 +26,17 @@ class Student: ObservableObject, Identifiable {
 class Standard: ObservableObject, Identifiable {
     let id = UUID()
     var name: String = ""
+
+    // these fire `objectWillChange` which is a part of ObservableObject protocol
+    // in our case both the standard view observes these properties
     @Published var students: [Student] = []
     @Published var averageMarks: String = ""
     
     private var cancellables = Set<AnyCancellable>()
-    
+
+    // custom publisher (also called subjects)
+    // used to trigger an event manually
+    // in our case when a new student gets added, we send this event
     var studentCountUpdatedPublisher = PassthroughSubject<Void, Never>()
     
     func createNewStudent() {
@@ -65,6 +74,9 @@ class VSSchool: ObservableObject, Identifiable {
     let id = UUID()
     
     var name: String = "SCHOOL"
+
+    // these fire `objectWillChange` which is a part of ObservableObject protocol
+    // in our case school view observes these for layout changes
     @Published var classes: [Standard] = []
     @Published var totalStudents: Int = 0
     
