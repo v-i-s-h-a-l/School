@@ -11,7 +11,7 @@ import Foundation
 
 class Student: ObservableObject, Identifiable {
     let id = UUID()
-
+    
     // these fire `objectWillChange` which is a part of ObservableObject protocol
     // in our case both the student view and standard class observe/receive/subscribe to these changes
     @Published var name: String = ""

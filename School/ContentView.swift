@@ -11,6 +11,7 @@ import SwiftUI
 
 struct ContentView: View {
     
+    // Data model to be "observed"
     @ObservedObject var school = VSSchool()
     
     var body: some View {
@@ -33,8 +34,8 @@ struct ContentView_Previews: PreviewProvider {
         Group {
             ContentView().colorScheme(.dark)
                 .previewDevice(PreviewDevice.init(rawValue: "Mac"))
-//            ContentView().colorScheme(.light)
-//                .previewDevice(PreviewDevice.init(rawValue: "mac"))
+            //            ContentView().colorScheme(.light)
+            //                .previewDevice(PreviewDevice.init(rawValue: "mac"))
         }
     }
 }
