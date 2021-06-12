@@ -214,11 +214,14 @@ struct ContentView: View {
     @ObservedObject var school = VSSchool()
     
     var body: some View {
-        ScrollView {
-            SchoolView(school: school)
+        ZStack {
+            Color.purple
+                .edgesIgnoringSafeArea(.all)
+            
+            ScrollView {
+                SchoolView(school: school)
+            }
         }
-        .background(Color.purple)
-        .edgesIgnoringSafeArea(.all)
         .accentColor(.orange)
     }
 }
