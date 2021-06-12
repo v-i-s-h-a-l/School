@@ -7,22 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C9D492BA2674587D008B1346 /* VSSchool.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D492B92674587D008B1346 /* VSSchool.swift */; };
+		C9D492BC26745882008B1346 /* Standard.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D492BB26745882008B1346 /* Standard.swift */; };
+		C9D492BE2674588B008B1346 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D492BD2674588B008B1346 /* Student.swift */; };
+		C9D492C02674597F008B1346 /* SchoolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D492BF2674597F008B1346 /* SchoolView.swift */; };
+		C9D492C226745997008B1346 /* StandardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D492C126745997008B1346 /* StandardView.swift */; };
+		C9D492C4267459A0008B1346 /* StudentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D492C3267459A0008B1346 /* StudentView.swift */; };
 		DC3DE88C2471CE2500B0B903 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3DE88B2471CE2500B0B903 /* AppDelegate.swift */; };
 		DC3DE88E2471CE2500B0B903 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3DE88D2471CE2500B0B903 /* SceneDelegate.swift */; };
 		DC3DE8902471CE2500B0B903 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3DE88F2471CE2500B0B903 /* ContentView.swift */; };
 		DC3DE8922471CE2900B0B903 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC3DE8912471CE2900B0B903 /* Assets.xcassets */; };
-		DC3DE8952471CE2900B0B903 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC3DE8942471CE2900B0B903 /* Preview Assets.xcassets */; };
 		DC3DE8982471CE2900B0B903 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC3DE8962471CE2900B0B903 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C9D492B92674587D008B1346 /* VSSchool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSSchool.swift; sourceTree = "<group>"; };
+		C9D492BB26745882008B1346 /* Standard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Standard.swift; sourceTree = "<group>"; };
+		C9D492BD2674588B008B1346 /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
+		C9D492BF2674597F008B1346 /* SchoolView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolView.swift; sourceTree = "<group>"; };
+		C9D492C126745997008B1346 /* StandardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardView.swift; sourceTree = "<group>"; };
+		C9D492C3267459A0008B1346 /* StudentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentView.swift; sourceTree = "<group>"; };
 		DC1283DF24772FDA00B1317E /* School.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = School.entitlements; sourceTree = "<group>"; };
 		DC3DE8882471CE2500B0B903 /* School.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = School.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC3DE88B2471CE2500B0B903 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DC3DE88D2471CE2500B0B903 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		DC3DE88F2471CE2500B0B903 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		DC3DE8912471CE2900B0B903 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		DC3DE8942471CE2900B0B903 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		DC3DE8972471CE2900B0B903 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DC3DE8992471CE2900B0B903 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -38,6 +48,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C9D492B726745833008B1346 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C9D492BF2674597F008B1346 /* SchoolView.swift */,
+				C9D492C126745997008B1346 /* StandardView.swift */,
+				C9D492C3267459A0008B1346 /* StudentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C9D492B826745859008B1346 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C9D492BB26745882008B1346 /* Standard.swift */,
+				C9D492BD2674588B008B1346 /* Student.swift */,
+				C9D492B92674587D008B1346 /* VSSchool.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		DC3DE87F2471CE2500B0B903 = {
 			isa = PBXGroup;
 			children = (
@@ -57,24 +87,17 @@
 		DC3DE88A2471CE2500B0B903 /* School */ = {
 			isa = PBXGroup;
 			children = (
-				DC1283DF24772FDA00B1317E /* School.entitlements */,
 				DC3DE88B2471CE2500B0B903 /* AppDelegate.swift */,
-				DC3DE88D2471CE2500B0B903 /* SceneDelegate.swift */,
-				DC3DE88F2471CE2500B0B903 /* ContentView.swift */,
 				DC3DE8912471CE2900B0B903 /* Assets.xcassets */,
-				DC3DE8962471CE2900B0B903 /* LaunchScreen.storyboard */,
+				DC3DE88F2471CE2500B0B903 /* ContentView.swift */,
 				DC3DE8992471CE2900B0B903 /* Info.plist */,
-				DC3DE8932471CE2900B0B903 /* Preview Content */,
+				DC3DE8962471CE2900B0B903 /* LaunchScreen.storyboard */,
+				C9D492B726745833008B1346 /* View */,
+				C9D492B826745859008B1346 /* Model */,
+				DC3DE88D2471CE2500B0B903 /* SceneDelegate.swift */,
+				DC1283DF24772FDA00B1317E /* School.entitlements */,
 			);
 			path = School;
-			sourceTree = "<group>";
-		};
-		DC3DE8932471CE2900B0B903 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				DC3DE8942471CE2900B0B903 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,7 +159,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC3DE8982471CE2900B0B903 /* LaunchScreen.storyboard in Resources */,
-				DC3DE8952471CE2900B0B903 /* Preview Assets.xcassets in Resources */,
 				DC3DE8922471CE2900B0B903 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -148,8 +170,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9D492C02674597F008B1346 /* SchoolView.swift in Sources */,
+				C9D492C226745997008B1346 /* StandardView.swift in Sources */,
 				DC3DE88C2471CE2500B0B903 /* AppDelegate.swift in Sources */,
+				C9D492BE2674588B008B1346 /* Student.swift in Sources */,
+				C9D492BC26745882008B1346 /* Standard.swift in Sources */,
 				DC3DE88E2471CE2500B0B903 /* SceneDelegate.swift in Sources */,
+				C9D492BA2674587D008B1346 /* VSSchool.swift in Sources */,
+				C9D492C4267459A0008B1346 /* StudentView.swift in Sources */,
 				DC3DE8902471CE2500B0B903 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -289,7 +317,7 @@
 				CODE_SIGN_ENTITLEMENTS = School/School.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
-				DEVELOPMENT_ASSET_PATHS = "\"School/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 9P7CJ3Z2B8;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = School/Info.plist;
@@ -313,7 +341,7 @@
 				CODE_SIGN_ENTITLEMENTS = School/School.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
-				DEVELOPMENT_ASSET_PATHS = "\"School/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 9P7CJ3Z2B8;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = School/Info.plist;
